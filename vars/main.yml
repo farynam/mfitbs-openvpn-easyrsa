@@ -1,0 +1,14 @@
+---
+# vars file for openvpn-easyrsa
+
+#easyrsa cert repo path
+PKI_DIR: /root/pki
+
+#easyrsa script path
+EASY_RSA_BIN: /usr/share/easy-rsa
+
+#easyrsa CA cert base name
+ca_cn: ca
+
+#host with easyrsa installation
+easy_rsa_host: server
