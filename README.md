@@ -33,7 +33,7 @@ N/A
 License
 -------
 
-MIT
+MIT 
 
 Author Information
 ------------------
