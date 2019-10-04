@@ -42,6 +42,7 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
+        - 9
         - 10
 
   galaxy_tags: []

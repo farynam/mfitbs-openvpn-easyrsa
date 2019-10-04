@@ -11,14 +11,18 @@ N/A
 Role Variables
 --------------
 
-
-* PKI_DIR - easyrsa cert repo path
-
-* EASY_RSA_BIN - easyrsa script path
-
-* ca_cn - easyrsa CA cert base name
-
 * easy_rsa_host - host with easyrsa installation
+
+
+#####Only Debian 9
+
+* KEY_COUNTRY
+* KEY_PROVINCE
+* KEY_CITY
+* KEY_ORG
+* KEY_EMAIL
+* KEY_OU
+
 
 Dependencies
 ------------
