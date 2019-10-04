@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Abstract role for building easyrsa host with CA intiated.
+openvpn_easyrsa
 
 Requirements
 ------------
