@@ -1,16 +1,27 @@
 ---
 # tasks file for openvpn-easyrsa
 
-- name: Use debian 10 related tasks if appropriete
-  import_tasks: debian10.yml
+- name: Install dependencies
+  import_tasks: deps.yml
   when: >
     inventory_hostname == easy_rsa_host
     and ansible_distribution == 'Debian'
-    and ansible_distribution_release == 'buster'
 
-- name: Use debian 9 related tasks if appropriete
-  import_tasks: debian9.yml
+- name: Use debian related tasks if appropriete
+  import_tasks: debian.yml
   when: >
     inventory_hostname == easy_rsa_host
     and ansible_distribution == 'Debian'
-    and ansible_distribution_release == 'stretch'
+
+- name: Client utility tasks
+  import_tasks: clientUtils.yml
+  when: >
+    inventory_hostname == easy_rsa_host
+    and ansible_distribution == 'Debian'
+    and client_type is defined
+
+- name: server utility tasks
+  import_tasks: serverUtils.yml
+  when: >
+    inventory_hostname == easy_rsa_host
+    and ansible_distribution == 'Debian'

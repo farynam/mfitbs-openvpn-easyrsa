@@ -12,16 +12,17 @@ Role Variables
 --------------
 
 * easy_rsa_host - host with easyrsa installation
-
-
-#####Only Debian 9
-
-* KEY_COUNTRY
-* KEY_PROVINCE
-* KEY_CITY
-* KEY_ORG
-* KEY_EMAIL
-* KEY_OU
+* client_type
+* server_port
+* server_host
+* proto
+* log_status
+* log
+* host_pki_dir
+* cipher
+* id_type
+* easy_rsa_host
+* clients
 
 
 Dependencies

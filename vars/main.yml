@@ -5,10 +5,12 @@
 PKI_DIR: /root/pki
 
 #easyrsa script path
-EASY_RSA_BIN: /usr/share/easy-rsa
+EASY_RSA_BIN: /root/easy-rsa
 
-#easyrsa CA cert base name
-ca_cn: ca
-
-#host with easyrsa installation
-easy_rsa_host: server
+EASY_RSA_VERSION: EasyRSA-unix-v3.0.6
+EASY_RSA_ARCH_DIR: EasyRSA-v3.0.6
+NODE_CLIENT_CFG_DIR: /root/node_client_cfg
+SERVER_CFG_DIR: /root/server_cfg
+PC_CLIENT_CFG_DIR: /root/pc_client_cfg
+LOCAL_REPO: target
+DH_LEN: 4096

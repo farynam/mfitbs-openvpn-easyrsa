@@ -1,0 +1,22 @@
+- name: install apt packages
+  apt:
+    name:
+      - python
+      - python-setuptools
+      - python-dev
+      - build-essential
+      - python-pip
+      - python-apt
+      - sshpass
+      - rsync
+    install_recommends: yes
+
+- name: Install python modules
+  pip:
+    name:
+      - ansible==2.8.5
+      - pexpect==4.7.0
+
+- name: Install OPENVPN
+  apt:
+    name: openvpn
