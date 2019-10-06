@@ -41,6 +41,27 @@
   args:
     creates: "{{ PKI_DIR }}/ta.key"
 
+- name: Create local target directory
+  local_action:
+    module: file
+    path: "{{ LOCAL_REPO }}"
+    state: directory
+    mode: '0770'
+
+- name: Create local servers directory
+  local_action:
+    module: file
+    path: "{{ LOCAL_REPO }}/servers"
+    state: directory
+    mode: '0770'
+
+- name: Create local clients directory
+  local_action:
+    module: file
+    path: "{{ LOCAL_REPO }}/clients"
+    state: directory
+    mode: '0770'
+
 - name: Grab CA locally
   fetch:
     src: "{{ PKI_DIR }}/ca.crt"
