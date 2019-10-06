@@ -1,66 +1,22 @@
-- name: Create certificates for a client
-  shell: easyrsa build-client-full {{ item }} nopass
+- name: Create certificate for a client
+  shell: easyrsa build-client-full {{ ansible_host }} nopass
   args:
     chdir: /root
-    creates: "{{ PKI_DIR }}/issued/{{ item }}.crt"
-  with_items: "{{ clients }}"
+    creates: "{{ PKI_DIR }}/issued/{{ ansible_host }}.crt"
   environment:
     PATH: "{{ EASY_RSA_BIN }}/{{ EASY_RSA_ARCH_DIR }}:{{ ansible_env.PATH }}"
   delegate_to: "{{ easy_rsa_host }}"
 
-- name: Create client personalized template directory
-  file:
-    path: "{{ NODE_CLIENT_CFG_DIR }}"
-    state: directory
-    mode: '0770'
-  when: client_type == 'node'
-
-- name: Template server type clients
-  template:
-    src: templates/node_client.conf
-    dest: "{{ NODE_CLIENT_CFG_DIR }}/{{ item }}.conf"
-    mode: '0660'
-    force : false
-  vars:
-    client: "{{ item }}"
-  with_items: "{{ clients }}"
-  when: client_type == 'node'
-
-- name: Create pc-client personalized template directory
-  file:
-    path: "{{ PC_CLIENT_CFG_DIR }}"
-    state: directory
-    mode: '0770'
-  when: client_type == 'pc'
-
-- name: Grab certs locally
+- name: Grab client cert locally
   fetch:
-    src: "{{PKI_DIR}}/issued/{{item}}.crt"
+    src: "{{PKI_DIR}}/issued/{{ ansible_host }}.crt"
     dest: "{{ LOCAL_REPO }}/clients/issued/"
     flat: yes
-  with_items: "{{ clients }}"
-  when: client_type == 'pc'
+  delegate_to: "{{ easy_rsa_host }}"
 
 - name: Grab keys locally
   fetch:
-    src: "{{PKI_DIR}}/private/{{item}}.key"
+    src: "{{PKI_DIR}}/private/{{ ansible_host }}.key"
     dest: "{{ LOCAL_REPO }}/clients/private/"
     flat: yes
-  with_items: "{{ clients }}"
-  when: client_type == 'pc'
-
-- name: Template pc type clients
-  template:
-    src: templates/pc_client.conf
-    dest: "{{ PC_CLIENT_CFG_DIR }}/{{ item }}.conf"
-    mode: '0660'
-    force : false
-  vars:
-    ca_cert: "{{ lookup('file', '{{ LOCAL_REPO }}/ca.crt') }}"
-    client_cert: "{{ lookup('file', '{{ LOCAL_REPO }}/clients/issued/' ~ item ~ '.crt') }}"
-    client_key: "{{ lookup('file',  '{{ LOCAL_REPO }}/clients/private/' ~ item ~ '.key') }}"
-    ta_key: "{{ lookup('file',  '{{ LOCAL_REPO }}/ta.key') }}"
-  with_items: "{{ clients }}"
-  when: client_type == 'pc'
-
-
+  delegate_to: "{{ easy_rsa_host }}"

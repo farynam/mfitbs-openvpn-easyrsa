@@ -1,7 +1,5 @@
 ---
 # tasks file for openvpn-easyrsa
-
-
 - name: Create easyrsa dir if it deosnt exists
   file:
     path: "{{ EASY_RSA_BIN }}"
@@ -38,7 +36,7 @@
   environment:
     PATH: "{{ EASY_RSA_BIN }}/{{ EASY_RSA_ARCH_DIR }}:{{ ansible_env.PATH }}"
 
-- name: Generate secret
+- name: Generate shared secret
   command: openvpn --genkey --secret {{ PKI_DIR }}/ta.key
   args:
     creates: "{{ PKI_DIR }}/ta.key"
@@ -54,6 +52,3 @@
     src: "{{PKI_DIR}}/ta.key"
     dest: "{{ LOCAL_REPO }}/"
     flat: yes
-
-
-

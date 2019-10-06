@@ -14,3 +14,4 @@ SERVER_CFG_DIR: /root/server_cfg
 PC_CLIENT_CFG_DIR: /root/pc_client_cfg
 LOCAL_REPO: target
 DH_LEN: 4096
+OPEN_VPN_CFG: /etc/openvpn
