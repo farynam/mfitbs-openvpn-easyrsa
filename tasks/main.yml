@@ -14,7 +14,6 @@
   import_tasks: clientUtils.yml
   when: >
     ansible_distribution == 'Debian'
-    and client_type is defined
     and groups['client'] is defined and inventory_hostname in groups['client']
 
 - name: server utility tasks
