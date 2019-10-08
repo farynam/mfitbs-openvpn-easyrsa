@@ -10,13 +10,13 @@
 - name: Grab server certs locally
   fetch:
     src: "{{PKI_DIR}}/issued/{{ ansible_host }}.crt"
-    dest: "{{ LOCAL_REPO }}/servers/issued/"
+    dest: "{{ local_repo }}/servers/issued/"
     flat: yes
   delegate_to: "{{ easy_rsa_host }}"
 
 - name: Grab server keys locally
   fetch:
     src: "{{PKI_DIR}}/private/{{ ansible_host }}.key"
-    dest: "{{ LOCAL_REPO }}/servers/private/"
+    dest: "{{ local_repo }}/servers/private/"
     flat: yes
   delegate_to: "{{ easy_rsa_host }}"

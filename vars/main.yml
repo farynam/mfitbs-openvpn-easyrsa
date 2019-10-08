@@ -12,6 +12,5 @@ EASY_RSA_ARCH_DIR: EasyRSA-v3.0.6
 NODE_CLIENT_CFG_DIR: /root/node_client_cfg
 SERVER_CFG_DIR: /root/server_cfg
 PC_CLIENT_CFG_DIR: /root/pc_client_cfg
-LOCAL_REPO: target
 DH_LEN: 4096
 OPEN_VPN_CFG: /etc/openvpn

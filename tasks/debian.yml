@@ -44,32 +44,32 @@
 - name: Create local target directory
   local_action:
     module: file
-    path: "{{ LOCAL_REPO }}"
+    path: "{{ local_repo }}"
     state: directory
     mode: '0770'
 
 - name: Create local servers directory
   local_action:
     module: file
-    path: "{{ LOCAL_REPO }}/servers"
+    path: "{{ local_repo }}/servers"
     state: directory
     mode: '0770'
 
 - name: Create local clients directory
   local_action:
     module: file
-    path: "{{ LOCAL_REPO }}/clients"
+    path: "{{ local_repo }}/clients"
     state: directory
     mode: '0770'
 
 - name: Grab CA locally
   fetch:
     src: "{{ PKI_DIR }}/ca.crt"
-    dest: "{{ LOCAL_REPO }}/"
+    dest: "{{ local_repo }}/"
     flat: yes
 
 - name: Grab ta locally
   fetch:
     src: "{{PKI_DIR}}/ta.key"
-    dest: "{{ LOCAL_REPO }}/"
+    dest: "{{ local_repo }}/"
     flat: yes
